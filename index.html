@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL ACCESS: MILE HIGH</title>
+    <style>
+        body { background-color: #0a0a0a; color: #00ff41; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        #terminal { width: 90%; max-width: 600px; border: 1px solid #00ff41; padding: 20px; box-shadow: 0 0 20px rgba(0, 255, 65, 0.2); }
+        input { background: transparent; border: none; border-bottom: 2px solid #00ff41; color: #00ff41; font-size: 1.2rem; width: 100%; outline: none; margin-top: 20px; }
+        .hidden { display: none; }
+        .glitch { animation: shake 0.5s infinite; }
+        @keyframes shake { 0% { transform: translate(0); } 20% { transform: translate(-2px, 2px); } 40% { transform: translate(-2px, -2px); } 60% { transform: translate(2px, 2px); } 80% { transform: translate(2px, -2px); } 100% { transform: translate(0); } }
+    </style>
+</head>
+<body>
+
+<div id="terminal">
+    <div id="content">
+        <p>> INITIALIZING SECURE LINK...</p>
+        <p>> ENCRYPTION DETECTED: LEVEL 1</p>
+        <p>> <strong>CLUE:</strong> In the 4th month, a "Thunderbolt" strikes the "Gold." Find the date of this seismic collision and enter the 4-digit key (MMDD).</p>
+        <input type="text" id="input1" placeholder="ENTER KEYCODE..." autofocus>
+    </div>
+
+    <div id="node2" class="hidden">
+        <p>> ACCESS GRANTED. PROCEEDING TO NODE 2...</p>
+        <p>> <strong>CLUE:</strong> Open the <a href="https://3ddigitalvenue.com/3dmap/clients/denver-nuggets/" target="_blank" style="color: cyan;">Mapping Array</a>. Locate the 'Premium' mid-tier sector. The ID is a 3-digit prime-adjacent number where the digits add up to 5 and the first digit is 2.</p>
+        <input type="text" id="input2" placeholder="ENTER SECTOR ID...">
+    </div>
+
+    <div id="node3" class="hidden">
+        <p>> SECTOR 212 LOCKED. CALCULATING ELEVATION...</p>
+        <p>> <strong>CLUE:</strong> Not at the floor, not in the clouds. Your elevation matches the number of times the "Mile High City" has hoisted the gold trophy (as of 2023) + 3.</p>
+        <input type="text" id="input3" placeholder="ENTER ELEVATION...">
+    </div>
+
+    <div id="node4" class="hidden">
+        <p>> ELEVATION SET. FINAL COORDINATES REQUIRED...</p>
+        <p>> <strong>CLUE:</strong> The squad consists of 7 agents. Your vector begins at the origin (1) and spans to the number of completion. Enter the range (X-X).</p>
+        <input type="text" id="input4" placeholder="ENTER VECTOR RANGE...">
+    </div>
+
+    <div id="final" class="hidden">
+        <h2 class="glitch">MISSION SUCCESS</h2>
+        <p><strong>OBJECTIVE:</strong> NUGGETS vs OKC THUNDER</p>
+        <p><strong>DATE:</strong> APRIL 10, 2025</p>
+        <p><strong>CLEARANCE:</strong> CLUB LEVEL ACCESS</p>
+        <p><strong>COORDINATES:</strong> SEC 212, ROW 4, SEATS 1-7</p>
+        <p>GET YOUR GEAR READY. WE ARE GOING TO BALL ARENA.</p>
+    </div>
+</div>
+
+<script>
+    const logic = {
+        input1: "0410",
+        input2: "212",
+        input3: "4",
+        input4: "1-7"
+    };
+
+    document.querySelectorAll('input').forEach(input => {
+        input.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                if (this.value === logic[this.id]) {
+                    this.parentElement.classList.add('hidden');
+                    const next = this.parentElement.nextElementSibling;
+                    if (next) {
+                        next.classList.remove('hidden');
+                        const nextInput = next.querySelector('input');
+                        if (nextInput) nextInput.focus();
+                    }
+                } else {
+                    alert("ACCESS DENIED: INCORRECT KEY");
+                    this.value = "";
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
