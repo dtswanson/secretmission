@@ -5,74 +5,86 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXTRACTION PROTOCOL: ALPHA-10</title>
     <style>
-        body { background-color: #000; color: #ff9d00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        #terminal { width: 95%; max-width: 800px; border: 1px solid #ff9d00; padding: 25px; background: rgba(20, 20, 20, 0.9); box-shadow: 0 0 30px rgba(255, 157, 0, 0.3); }
-        input { background: transparent; border: none; border-bottom: 2px solid #ff9d00; color: #fff; font-size: 1.4rem; width: 100%; outline: none; margin-top: 20px; text-transform: uppercase; }
+        body { background-color: #000; color: #ff9d00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 10px; box-sizing: border-box; }
+        #terminal { width: 100%; max-width: 900px; border: 1px solid #ff9d00; padding: 20px; background: rgba(10, 10, 10, 0.95); box-shadow: 0 0 30px rgba(255, 157, 0, 0.2); position: relative; }
+        input { background: transparent; border: none; border-bottom: 2px solid #ff9d00; color: #fff; font-size: 1.5rem; width: 100%; outline: none; margin-top: 20px; text-transform: uppercase; }
         .hidden { display: none; }
-        .data-row { color: #888; font-size: 0.8rem; margin-bottom: 5px; letter-spacing: 1px; }
-        h1 { font-size: 1.2rem; border-bottom: 1px solid #ff9d00; padding-bottom: 10px; }
+        .data-row { color: #666; font-size: 0.8rem; margin-bottom: 5px; }
         
-        /* Final Screen Styling */
-        .reveal-header { display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px; }
-        .logo { height: 80px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
-        .vs { font-size: 1.5rem; font-weight: bold; color: #fff; }
-        .map-container { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */ margin-top: 20px; border: 1px solid #00d4ff; }
-        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        .highlight { color: #00d4ff; font-weight: bold; }
+        /* Final Reveal Layout */
+        #final { color: #fff; display: flex; flex-direction: column; height: 85vh; }
+        .reveal-header { display: grid; grid-template-columns: 1fr 2fr 1fr; align-items: center; border-bottom: 2px solid #00d4ff; padding-bottom: 15px; margin-bottom: 15px; }
+        .logo { height: 60px; width: auto; justify-self: center; }
+        .mission-intel { text-align: center; }
+        .mission-intel h1 { color: #00d4ff; margin: 0; font-size: 1.1rem; letter-spacing: 2px; }
+        .mission-intel p { margin: 5px 0; font-size: 0.9rem; }
+        
+        /* The Map Fix */
+        .map-frame-wrapper { flex-grow: 1; border: 1px solid #333; position: relative; background: #111; border-radius: 4px; overflow: hidden; }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .coordinates-bar { display: flex; justify-content: space-between; padding: 10px 0; font-size: 0.8rem; color: #00d4ff; font-weight: bold; }
+        .highlight { color: #FFD700; }
+
+        @media (max-width: 600px) {
+            .reveal-header { grid-template-columns: 1fr 1fr; }
+            .vs { display: none; }
+            .logo { height: 45px; }
+            #terminal { padding: 10px; }
+        }
     </style>
 </head>
 <body>
 
 <div id="terminal">
     <div id="step1">
-        <div class="data-row">LOC: GERMANY // DEPARTURE: MUC via Houston / Rockport</div>
-        <h1>[PHASE 1: PERSONNEL COUNT]</h1>
-        <p>> To begin extraction, confirm the unit size.</p>
-        <p>> <strong>CLUE:</strong> The group starts at the first position and spans a total of seven. Enter the range (X-X):</p>
+        <div class="data-row">LOC: GERMANY // STATUS: ENCRYPTED</div>
+        <h1>[PHASE 1: PERSONNEL]</h1>
+        <p>> Enter the unit range (X-X):</p>
         <input type="text" id="ans1" autofocus autocomplete="off">
     </div>
 
     <div id="step2" class="hidden">
-        <div class="data-row">DISTANCE: 8,045 KM // ALTITUDE: CHECKING...</div>
-        <h1>[PHASE 2: ALTITUDE CONTROL]</h1>
-        <p>> Personnel confirmed. Set the target elevation.</p>
-        <p>> <strong>CLUE:</strong> The row is equal to the number of wheels on a standard car. (Single digit)</p>
+        <div class="data-row">ALTITUDE LOCK REQUIRED</div>
+        <h1>[PHASE 2: ELEVATION]</h1>
+        <p>> Enter the elevation (Standard car wheels):</p>
         <input type="text" id="ans2" autocomplete="off">
     </div>
 
     <div id="step3" class="hidden">
-        <div class="data-row">DESTINATION: MILE HIGH REGION // 39.7487° N, 105.0076° W</div>
-        <h1>[PHASE 3: SECTOR COORDINATES]</h1>
-        <p>> Elevation set. Identify the landing sector.</p>
-        <p>> <strong>CLUE:</strong> A 3-digit palindrome. (Area 51 x 4) + 8 = ?</p>
+        <h1>[PHASE 3: SECTOR]</h1>
+        <p>> (Area 51 x 4) + 8 = ?</p>
         <input type="text" id="ans3" autocomplete="off">
     </div>
 
     <div id="step4" class="hidden">
-        <div class="data-row">TIME ZONE: MST (GMT-7) // GLITCH DETECTED</div>
-        <h1>[PHASE 4: TEMPORAL WINDOW]</h1>
-        <p>> Warning: Starts at 03:00 AM Central European Time on April 11th. Enter the LOCAL US DATE to stabilize (MMDD):</p>
+        <h1>[PHASE 4: LOCAL TIME]</h1>
+        <p>> Enter the Local US Date (MMDD):</p>
         <input type="text" id="ans4" autocomplete="off">
     </div>
 
     <div id="final" class="hidden">
         <div class="reveal-header">
             <img class="logo" src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Nuggets">
-            <div class="vs">VS</div>
+            <div class="mission-intel">
+                <h1>OPERATION: BALL ARENA</h1>
+                <p>NUGGETS vs THUNDER | APRIL 10</p>
+                <p class="highlight">SELECT HEALTH CLUB LEVEL</p>
+            </div>
             <img class="logo" src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Thunder">
         </div>
-        
-        <h1 style="border-color: #00d4ff; color: #00d4ff; text-align: center;">MISSION SUCCESS: THE MILE HIGH SHOWDOWN</h1>
-        
-        <p>> <strong>EVENT:</strong> Denver Nuggets vs. OKC Thunder</p>
-        <p>> <strong>DATE:</strong> April 10, 2025</p>
-        <p>> <strong>CLEARANCE:</strong> <span class="highlight">SELECT HEALTH CLUB LEVEL</span></p>
-        <p>> <strong>SEATING:</strong> Section 212, Row 4, Seats 1-7</p>
 
-        <div class="map-container">
+        <div class="coordinates-bar">
+            <span>SEC: 212</span>
+            <span>ROW: 4</span>
+            <span>SEATS: 1-7</span>
+        </div>
+
+        <div class="map-frame-wrapper">
             <iframe src="https://3ddigitalvenue.com/3dmap/clients/denver-nuggets/"></iframe>
         </div>
-        <p style="text-align: center; font-size: 0.8rem; color: #00d4ff;">^ Interactive 3D Sector Map Loaded ^</p>
+        
+        <p class="data-row" style="text-align: center; margin-top: 10px;">> USE TOUCH/MOUSE TO NAVIGATE THE 3D INTERFACE</p>
     </div>
 </div>
 
@@ -88,6 +100,12 @@
                     next.classList.remove('hidden');
                     const nextInput = next.querySelector('input');
                     if (nextInput) nextInput.focus();
+                    
+                    // Specific fix to ensure terminal box expands for the final map
+                    if (next.id === "final") {
+                        document.getElementById('terminal').style.height = "90vh";
+                        document.getElementById('terminal').style.maxWidth = "1100px";
+                    }
                 } else {
                     input.style.borderBottomColor = "red";
                     setTimeout(() => { input.style.borderBottomColor = "#ff9d00"; }, 500);
