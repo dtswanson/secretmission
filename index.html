@@ -5,21 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EXTRACTION PROTOCOL: ALPHA-10</title>
     <style>
-        body { background-color: #000; color: #ff9d00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        #terminal { width: 90%; max-width: 650px; border: 1px solid #ff9d00; padding: 25px; background: rgba(20, 20, 20, 0.9); box-shadow: 0 0 30px rgba(255, 157, 0, 0.2); }
+        body { background-color: #000; color: #ff9d00; font-family: 'Courier New', monospace; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        #terminal { width: 95%; max-width: 800px; border: 1px solid #ff9d00; padding: 25px; background: rgba(20, 20, 20, 0.9); box-shadow: 0 0 30px rgba(255, 157, 0, 0.3); }
         input { background: transparent; border: none; border-bottom: 2px solid #ff9d00; color: #fff; font-size: 1.4rem; width: 100%; outline: none; margin-top: 20px; text-transform: uppercase; }
         .hidden { display: none; }
-        .data-row { color: #888; font-size: 0.9rem; margin-bottom: 5px; }
-        h1 { font-size: 1.1rem; text-shadow: 2px 2px #332000; border-bottom: 1px solid #ff9d00; padding-bottom: 10px; }
-        .final-btn { display: inline-block; margin-top: 20px; padding: 10px 20px; border: 1px solid #00d4ff; color: #00d4ff; text-decoration: none; transition: 0.3s; }
-        .final-btn:hover { background: #00d4ff; color: #000; }
+        .data-row { color: #888; font-size: 0.8rem; margin-bottom: 5px; letter-spacing: 1px; }
+        h1 { font-size: 1.2rem; border-bottom: 1px solid #ff9d00; padding-bottom: 10px; }
+        
+        /* Final Screen Styling */
+        .reveal-header { display: flex; justify-content: space-around; align-items: center; margin-bottom: 20px; }
+        .logo { height: 80px; width: auto; filter: drop-shadow(0 0 5px rgba(255,255,255,0.5)); }
+        .vs { font-size: 1.5rem; font-weight: bold; color: #fff; }
+        .map-container { position: relative; width: 100%; padding-top: 56.25%; /* 16:9 Aspect Ratio */ margin-top: 20px; border: 1px solid #00d4ff; }
+        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .highlight { color: #00d4ff; font-weight: bold; }
     </style>
 </head>
 <body>
 
 <div id="terminal">
     <div id="step1">
-        <div class="data-row">LOC: GERMANY // TARGET: WESTERN HEMISPHERE</div>
+        <div class="data-row">LOC: GERMANY // DEPARTURE: MUC via Houston / Rockport</div>
         <h1>[PHASE 1: PERSONNEL COUNT]</h1>
         <p>> To begin extraction, confirm the unit size.</p>
         <p>> <strong>CLUE:</strong> The group starts at the first position and spans a total of seven. Enter the range (X-X):</p>
@@ -27,7 +33,7 @@
     </div>
 
     <div id="step2" class="hidden">
-        <div class="data-row">DEPARTURE: FRA/MUC // DISTANCE: 8,000 KM</div>
+        <div class="data-row">DISTANCE: 8,045 KM // ALTITUDE: CHECKING...</div>
         <h1>[PHASE 2: ALTITUDE CONTROL]</h1>
         <p>> Personnel confirmed. Set the target elevation.</p>
         <p>> <strong>CLUE:</strong> The row is equal to the number of wheels on a standard car. (Single digit)</p>
@@ -35,32 +41,38 @@
     </div>
 
     <div id="step3" class="hidden">
-        <div class="data-row">DESTINATION: MILE HIGH REGION</div>
+        <div class="data-row">DESTINATION: MILE HIGH REGION // 39.7487° N, 105.0076° W</div>
         <h1>[PHASE 3: SECTOR COORDINATES]</h1>
         <p>> Elevation set. Identify the landing sector.</p>
-        <p>> <strong>CLUE:</strong> A 3-digit number. It is a palindrome. It is the number of "The Area" (51) multiplied by 4, plus 8.</p>
-        <p class="data-row">Hint: (51 * 4) + 8 = ?</p>
+        <p>> <strong>CLUE:</strong> A 3-digit palindrome. (Area 51 x 4) + 8 = ?</p>
         <input type="text" id="ans3" autocomplete="off">
     </div>
 
     <div id="step4" class="hidden">
-        <div class="data-row">TIME ZONE: MST (GMT-7)</div>
+        <div class="data-row">TIME ZONE: MST (GMT-7) // GLITCH DETECTED</div>
         <h1>[PHASE 4: TEMPORAL WINDOW]</h1>
-        <p>> Warning: This event starts at 03:00 AM Central European Time on April 11th... but in Colorado, it is still the previous day.</p>
-        <p>> <strong>CLUE:</strong> Enter the US local date of the event (MMDD):</p>
+        <p>> Warning: Starts at 03:00 AM Central European Time on April 11th. Enter the LOCAL US DATE to stabilize (MMDD):</p>
         <input type="text" id="ans4" autocomplete="off">
     </div>
 
-    <div id="final" class="hidden" style="color: #fff; border-color: #00d4ff;">
-        <h1 style="border-color: #00d4ff; color: #00d4ff;">[MISSION INITIATED: OPERATION BALL ARENA]</h1>
-        <p>> You are crossing the Atlantic for a Mile High showdown.</p>
-        <p>> <strong>EVENT:</strong> Denver Nuggets vs. Oklahoma City Thunder</p>
+    <div id="final" class="hidden">
+        <div class="reveal-header">
+            <img class="logo" src="https://cdn.nba.com/logos/nba/1610612743/primary/L/logo.svg" alt="Nuggets">
+            <div class="vs">VS</div>
+            <img class="logo" src="https://cdn.nba.com/logos/nba/1610612760/primary/L/logo.svg" alt="Thunder">
+        </div>
+        
+        <h1 style="border-color: #00d4ff; color: #00d4ff; text-align: center;">MISSION SUCCESS: THE MILE HIGH SHOWDOWN</h1>
+        
+        <p>> <strong>EVENT:</strong> Denver Nuggets vs. OKC Thunder</p>
         <p>> <strong>DATE:</strong> April 10, 2025</p>
-        <p>> <strong>ACCESS LEVEL:</strong> SELECT HEALTH CLUB LEVEL (The Good Stuff)</p>
-        <p>> <strong>YOUR POST:</strong> Section 212, Row 4, Seats 1-7</p>
-        <br>
-        <p>You're going to the game!</p>
-        <a href="https://3ddigitalvenue.com/3dmap/clients/denver-nuggets/" target="_blank" class="final-btn">SCAN SEATING MAP</a>
+        <p>> <strong>CLEARANCE:</strong> <span class="highlight">SELECT HEALTH CLUB LEVEL</span></p>
+        <p>> <strong>SEATING:</strong> Section 212, Row 4, Seats 1-7</p>
+
+        <div class="map-container">
+            <iframe src="https://3ddigitalvenue.com/3dmap/clients/denver-nuggets/"></iframe>
+        </div>
+        <p style="text-align: center; font-size: 0.8rem; color: #00d4ff;">^ Interactive 3D Sector Map Loaded ^</p>
     </div>
 </div>
 
@@ -79,6 +91,7 @@
                 } else {
                     input.style.borderBottomColor = "red";
                     setTimeout(() => { input.style.borderBottomColor = "#ff9d00"; }, 500);
+                    input.value = "";
                 }
             }
         });
